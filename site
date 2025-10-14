@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Treinamento Breno Eiras</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0B0C10;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Oswald', sans-serif;
+    }
+
+    /* --------- HEADER --------- */
+    header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+header h1 {
+  color: #00B894;
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 600;
+  flex-shrink: 0; /* impede que o título encolha */
+}
+
+nav {
+  flex-grow: 1; /* ocupa o restante do espaço */
+  display: flex;
+  justify-content: center; /* centraliza os links */
+}
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #0984E3;
+    }
+
+    /* --------- HERO --------- */
+    #inicio {
+      height: 100vh;
+      background: url('https://i0.wp.com/gfteammassachusetts.com/wp-content/uploads/2021/09/GfTeam-vazado-comletras.png') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    #inicio div {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2.5rem;
+      border-radius: 1rem;
+      animation: fadeUp 1.2s ease-out forwards;
+    }
+
+    #inicio h2 {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    #inicio p {
+      color: #ccc;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #00B894, #fffb00);
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* --------- SEÇÕES --------- */
+    section {
+      padding: 6rem 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #00B894;
+    }
+
+    section p {
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 1rem;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    img:hover {
+      transform: scale(1.02);
+      filter: brightness(1.1);
+    }
+
+    /* --------- TREINOS --------- */
+    #treinos {
+      background: #fff;
+      color: #000;
+    }
+
+    .schedule-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .schedule-card {
+      background: rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #00B894;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 450px;
+      transition: all 0.3s ease;
+    }
+
+    .schedule-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .schedule-card h3 {
+      color: #0984E3;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .schedule-card ul {
+      list-style: none;
+      padding: 0;
+      color: #333;
+    }
+
+    .schedule-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .price-box {
+      background: #c8c9c8;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      color: #020202;
+    }
+
+    /* --------- PROJETO --------- */
+    #projeto {
+      background: linear-gradient(135deg, #00B894, #003006);
+      color: white;
+    }
+
+    /* --------- EQUIPE --------- */
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .member {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 400px;
+      transition: all 0.3s ease;
+    }
+
+    .member:hover {
+      transform: scale(1.05);
+    }
+
+    .member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .member h3 {
+      color: #00B894;
+      margin-bottom: 0.5rem;
+    }
+
+    /* --------- CONTATO --------- */
+    #contato {
+      background: #fff;
+      color: #000;
+    }
+
+    #contato p {
+      color: #333;
+    }
+
+    .contact-buttons a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .contact-buttons .btn-whats {
+      background: linear-gradient(135deg, #00B894, #0984E3);
+      color: white;
+    }
+
+    .contact-buttons .btn-insta {
+      border: 2px solid #0984E3;
+      color: #0984E3;
+    }
+
+    .contact-buttons .btn-insta:hover {
+      background: #0984E3;
+      color: white;
+    }
+
+    /* --------- FOOTER --------- */
+    footer {
+      background: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    /* --------- ANIMAÇÕES --------- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* --------- RESPONSIVO --------- */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      nav {
+        text-align: center;
+      }
+      nav a {
+        display: inline-block;
+        margin: 10px;
+      }
+      #inicio h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CT Breno Eiras</h1>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#treinos">Treinos</a>
+      <a href="#projeto">Projeto</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CT Breno Eiras</h1>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#treinos">Treinos</a>
+      <a href="#projeto">Projeto</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <div>
+      <h2>Centro de Treinamento Breno Eiras</h2>
+      <p>Excelência, disciplina e respeito dentro e fora do tatame</p>
+      <a href="#treinos" class="btn">Conheça nossos treinos</a>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <h2>Formando campeões dentro e fora do tatame</h2>
+    <p>O Centro de Treinamento Breno Eiras é um espaço dedicado à prática e ao ensino do Jiu-Jitsu, unindo técnica, respeito e evolução pessoal. Sob a liderança do Mestre <strong>Breno Eiras</strong> e com o apoio do instrutor <strong>Tiago Bodão</strong>, promovemos o crescimento físico e mental de nossos alunos através da arte suave.</p>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDNIJCn_eVwQUNHyJxytxUhE_XF8VSvAtTIw&s" alt="Jiu-Jitsu">
+  </section>
+
+  <section id="treinos">
+    <h2>Horários de Treinos</h2>
+    <div class="schedule-container">
+      <div class="schedule-card">
+        <h3>Treinos Adultos</h3>
+        <ul>
+          <li>Segunda-feira 19:30 — Posição e específico</li>
+          <li>Terça-feira 19:30 — Open</li>
+          <li>Quarta-feira 19:30 — NoGi</li>
+          <li>Quinta-feira 19:30 — Físico, posição e específico</li>
+          <li>Sexta-feira 18:30 — Open</li>
+        </ul>
+        <div class="price-box">
+          <p style="color: #fff;"><strong>Mensalidade:</strong> R$ 100,00</p>
+          <p style="color: #fff;"><strong>Pix:</strong> 21 99712-0201</p>
+        </div>
+      </div>
+      <div class="schedule-card">
+        <h3>Projeto Infantil (Escolhas Certas)</h3>
+        <ul>
+          <li>Terça e Quinta — 18:30 / 19:30</li>
+        </ul>
+        <p style="color:#00B894; font-weight:600;">💚 Treino gratuito para alunos de escola pública!</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projeto">
+    <h2 style="color: rgb(207, 207, 207);">Projeto Social: Escolhas Certas</h2>
+    <p>O projeto <strong>Escolhas Certas</strong> oferece aulas gratuitas de Jiu-Jitsu para alunos da rede pública de ensino, entre 6 e 18 anos. Nosso objetivo é transformar vidas através do esporte, ensinando valores como disciplina, respeito e foco — formando cidadãos dentro e fora do tatame.</p>
+    <img src="https://live.staticflickr.com/65535/54283202529_521f5b7f1d_z.jpg" alt="Projeto Social">
+  </section>
+
+  <section id="equipe">
+    <h2>Nossa Equipe</h2>
+    <div class="team">
+      <div class="member">
+        <img src="https://media-gig4-2.cdn.whatsapp.net/v/t61.24694-24/491885841_650893194516673_5733577264343884572_n.jpg?ccb=11-4&oh=01_Q5Aa2wGgW5m0myvuofY6exY5BMYMH5WiUAXAvONzCDceoXUwQg&oe=68FBD99D&_nc_sid=5e03e0&_nc_cat=101" alt="Breno">
+        <h3>Breno Eiras</h3>
+        <p>Faixa-preta 4 graus e fundador do CT. Mais de 15 anos formando atletas e cidadãos.</p>
+      </div>
+      <div class="member">
+        <img src="https://media-gig4-2.cdn.whatsapp.net/v/t61.24694-24/523368017_1048638157209023_101850507314342748_n.jpg?ccb=11-4&oh=01_Q5Aa2wESWEx385aYeJ8qpbLlqRDMNrYMX205MGftn35i_Z5SOw&oe=68FBD133&_nc_sid=5e03e0&_nc_cat=106" alt="Tiago">
+        <h3>Instrutor Tiago Bodão</h3>
+        <p>Responsável técnico e apoio ao projeto social. Dedicado ao desenvolvimento dos alunos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2>Entre em Contato</h2>
+    <p>Quer conhecer nossos treinos ou fazer parte do projeto social? Fale conosco e venha viver o Jiu-Jitsu de verdade!</p>
+    <p><strong>📱 Telefone:</strong> (21) 99712-0201</p>
+    <p><strong>📸 Instagram:</strong> @gfteamriobonito01</p> 
+    <div class="contact-buttons">
+      <a href="https://wa.me/5521997120201" target="_blank" class="btn-whats">Fale Conosco</a>
+      <a href="https://www.instagram.com/gfteamriobonito01/" target="_blank" class="btn-insta">Siga no Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Centro de Treinamento Breno Eiras — Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Animações ao rolar
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+</body>
+</html>
